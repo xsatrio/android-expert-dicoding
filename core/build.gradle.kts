@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.xsat.androidexpertdicoding.core"
+    namespace = "com.xsat.core"
     compileSdk = 35
 
     defaultConfig {

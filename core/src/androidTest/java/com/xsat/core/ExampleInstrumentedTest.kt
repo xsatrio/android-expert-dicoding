@@ -1,4 +1,4 @@
-package com.xsat.androidexpertdicoding.core
+package com.xsat.core
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.xsat.androidexpertdicoding.core.test", appContext.packageName)
+        assertEquals("com.xsat.core.test", appContext.packageName)
     }
 }

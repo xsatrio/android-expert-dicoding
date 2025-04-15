@@ -1,4 +1,4 @@
-package com.xsat.androidexpertdicoding.core
+package com.xsat.core
 
 import org.junit.Test
 
