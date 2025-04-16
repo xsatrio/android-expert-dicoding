@@ -46,19 +46,15 @@ class GithubUserRepository(
     }
 
     override fun getFavoriteUsers(): Flow<List<GithubUsers>> {
-        return localDataSource.getAllGithubUsers().map {
+        return localDataSource.getFavoriteGithubUsers().map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
 
     override suspend fun setFavoriteUser(user: GithubUsers, state: Boolean) {
-        val entity = DataMapper.mapDomainToEntity(user)
+        val githubUser = DataMapper.mapDomainToEntity(user)
         withContext(Dispatchers.IO) {
-            if (state) {
-                localDataSource.insertGithubUser(entity)
-            } else {
-                localDataSource.deleteGithubUser(entity)
-            }
+            localDataSource.setFavoriteGithubUser(githubUser, state)
         }
     }
 

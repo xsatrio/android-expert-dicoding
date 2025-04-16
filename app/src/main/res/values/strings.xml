@@ -11,4 +11,5 @@
     <string name="nameus">Full Name</string>
     <string name="username">Username</string>
     <string name="iduser">id</string>
+    <string name="title_favorite">favorite</string>
 </resources>

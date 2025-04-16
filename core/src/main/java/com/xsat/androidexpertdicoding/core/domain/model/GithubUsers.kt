@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class GithubUsers (
     var username: String,
     var avatarUrl: String? = null,
-    val isFavorite: Boolean
+    var isFavorite: Boolean
 ) : Parcelable

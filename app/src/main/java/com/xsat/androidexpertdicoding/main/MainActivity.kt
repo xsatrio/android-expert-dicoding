@@ -66,20 +66,20 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu2 -> {
-                    // val intent = Intent(this, FavoriteActivity::class.java)
-                    // startActivity(intent)
+                    val intent = Intent(this, Class.forName("com.xsat.androidexpertdicoding.favorite.FavoriteActivity"))
+                    startActivity(intent)
                     true
                 }
                 R.id.menu3 -> {
                     // Toggle dark mode
                     if (isDarkMode) {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                        sharedPreferences.edit().putBoolean("theme", false).apply() // Update shared preferences
-                        isDarkMode = false  // Update the state variable
+                        sharedPreferences.edit().putBoolean("theme", false).apply()
+                        isDarkMode = false
                     } else {
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                        sharedPreferences.edit().putBoolean("theme", true).apply() // Update shared preferences
-                        isDarkMode = true  // Update the state variable
+                        sharedPreferences.edit().putBoolean("theme", true).apply()
+                        isDarkMode = true
                     }
                     true
                 }
@@ -120,9 +120,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDetailActivity(user: GithubUsers) {
-        // Intent untuk membuka DetailActivity dengan data user
         val intent = Intent(this, DetailActivity::class.java).apply {
-            putExtra("username", user.username)  // kirim data ke DetailActivity
+            putExtra("username", user.username)
+            putExtra("user_data", user)
+            putExtra("isFavorite", true)
         }
         startActivity(intent)
     }

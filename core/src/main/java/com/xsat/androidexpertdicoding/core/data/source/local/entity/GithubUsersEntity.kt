@@ -11,5 +11,5 @@ data class GithubUsersEntity(
     @PrimaryKey(autoGenerate = false)
     var username: String,
     var avatarUrl: String? = null,
-    val isFavorite: Boolean
+    var isFavorite: Boolean
 ): Parcelable

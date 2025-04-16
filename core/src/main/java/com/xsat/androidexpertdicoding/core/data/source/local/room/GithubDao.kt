@@ -8,17 +8,17 @@ import kotlinx.coroutines.flow.Flow
 interface GithubDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addGithubUser(user: com.xsat.androidexpertdicoding.core.data.source.local.entity.GithubUsersEntity)
+    suspend fun addGithubUser(user: GithubUsersEntity)
 
     @Update
-    suspend fun updateGithubUser(user: com.xsat.androidexpertdicoding.core.data.source.local.entity.GithubUsersEntity)
+    suspend fun updateGithubUser(user: GithubUsersEntity)
 
     @Delete
-    suspend fun removeGithubUser(user: com.xsat.androidexpertdicoding.core.data.source.local.entity.GithubUsersEntity)
+    suspend fun removeGithubUser(user: GithubUsersEntity)
 
     @Query("SELECT * FROM GithubUsersEntity")
-    fun getGithubUser(): Flow<List<com.xsat.androidexpertdicoding.core.data.source.local.entity.GithubUsersEntity>>
+    fun getGithubUser(): Flow<List<GithubUsersEntity>>
 
-    @Query("SELECT * FROM GithubUsersEntity WHERE username = :username")
-    fun getUsername(username: String): Flow<List<com.xsat.androidexpertdicoding.core.data.source.local.entity.GithubUsersEntity>>
+    @Query("SELECT * FROM GithubUsersEntity WHERE isFavorite = 1")
+    fun getFavoriteGithubUser(): Flow<List<GithubUsersEntity>>
 }
