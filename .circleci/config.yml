@@ -5,11 +5,15 @@ orbs:
 
 jobs:
   build:
-    executor:
-      name: android/android
-      java-version: "17"
+    executor: android/android
     steps:
       - checkout
+      - run:
+          name: Setup Java 17
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y openjdk-17-jdk
+            export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
       - restore_cache:
           key: android-orb-v1-
       - run:
