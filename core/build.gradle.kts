@@ -53,6 +53,7 @@ dependencies {
     api(libs.recyclerview)
     api(libs.material)
     api(libs.glide)
+    api(libs.circleimageview)
 
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)

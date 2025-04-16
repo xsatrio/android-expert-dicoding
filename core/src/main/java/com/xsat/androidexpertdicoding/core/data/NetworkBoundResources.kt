@@ -9,31 +9,31 @@ import kotlinx.coroutines.flow.map
 
 abstract class NetworkBoundResources<ResultType, RequestType> {
 
-    private var result: Flow<com.xsat.androidexpertdicoding.core.data.Resource<ResultType>> = flow {
-        emit(com.xsat.androidexpertdicoding.core.data.Resource.Loading())
+    private var result: Flow<Resource<ResultType>> = flow {
+        emit(Resource.Loading())
         val dbSource = loadFromDB().first()
         if (shouldFetch(dbSource)) {
-            emit(com.xsat.androidexpertdicoding.core.data.Resource.Loading())
+            emit(Resource.Loading())
             when (val apiResponse = createCall().first()) {
                 is ApiResponseResult.Success -> {
                     saveCallResult(apiResponse.data)
                     emitAll(loadFromDB().map {
-                        com.xsat.androidexpertdicoding.core.data.Resource.Success(it)
+                        Resource.Success(it)
                     })
                 }
                 is ApiResponseResult.Empty -> {
                     emitAll(loadFromDB().map {
-                        com.xsat.androidexpertdicoding.core.data.Resource.Success(it)
+                        Resource.Success(it)
                     })
                 }
                 is ApiResponseResult.Error -> {
                     onFetchFailed()
-                    emit(com.xsat.androidexpertdicoding.core.data.Resource.Error(apiResponse.errorMessage))
+                    emit(Resource.Error(apiResponse.errorMessage))
                 }
             }
         } else {
             emitAll(loadFromDB().map {
-                com.xsat.androidexpertdicoding.core.data.Resource.Success(it)
+                Resource.Success(it)
             })
         }
     }
@@ -48,5 +48,5 @@ abstract class NetworkBoundResources<ResultType, RequestType> {
 
     protected abstract suspend fun saveCallResult(data: RequestType)
 
-    fun asFlow(): Flow<com.xsat.androidexpertdicoding.core.data.Resource<ResultType>> = result
+    fun asFlow(): Flow<Resource<ResultType>> = result
 }

@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Android Expert Dicoding</string>
+    <string name="searchbar_hint">Masukkan Username</string>
+    <string name="menu_1">About Me :3</string>
+    <string name="menu_2">List Favorit</string>
+    <string name="menu_3">Theme</string>
+
+    <string name="detailus">Detail User</string>
+    <string name="splashdet">Splash Logo</string>
+    <string name="favorite_button">tombol favorite</string>
+    <string name="nameus">Full Name</string>
+    <string name="username">Username</string>
+    <string name="iduser">id</string>
 </resources>
