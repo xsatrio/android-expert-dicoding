@@ -5,7 +5,9 @@ orbs:
 
 jobs:
   build:
-    executor: android/android
+    executor:
+      name: android/android
+      java-version: "17"
     steps:
       - checkout
       - restore_cache:
