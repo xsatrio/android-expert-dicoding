@@ -6,7 +6,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    factory<GithubUserUseCase> { GithubUserInteractor(get()) }
+    factory<com.xsat.androidexpertdicoding.core.domain.usecase.GithubUserUseCase> { GithubUserInteractor(get()) }
 }
 
 val viewModelModule = module {

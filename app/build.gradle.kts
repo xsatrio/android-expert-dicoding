@@ -17,9 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField("String", "BASE_URL", "\"${project.properties["BASE_URL"]}\"")
-        buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"]}\"")
     }
 
     buildTypes {
@@ -45,33 +42,5 @@ android {
 }
 
 dependencies {
-//    implementation(project(":core"))
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    api(libs.recyclerview)
-    api(libs.material)
-    api(libs.glide)
-
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    implementation(libs.room.testing)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
-
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-
-    api(libs.koin.android)
-
-
+    implementation(project(":core"))
 }

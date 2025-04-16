@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Android Expert Dicoding"
 include(":app")
+include(":core")
