@@ -3,17 +3,30 @@ version: 2.1
 orbs:
   android: circleci/android@0.2.1
 
+executors:
+  java17:
+    docker:
+      - image: 'cimg/openjdk:17.0'
+
 jobs:
   build:
-    executor: android/android
+    executor: java17
     steps:
       - checkout
       - run:
-          name: Setup Java 17
+          name: Fix Java Certificate Issue
+          command: |
+            sudo rm -rf /etc/ssl/certs/java/cacerts
+            sudo apt-get remove --purge --auto-remove ca-certificates-java -y
+            sudo apt-get install --reinstall ca-certificates -y
+            sudo update-ca-certificates -f
+      - run:
+          name: Install OpenJDK 17
           command: |
             sudo apt-get update
             sudo apt-get install -y openjdk-17-jdk
-            export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+            sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+            java -version
       - restore_cache:
           key: android-orb-v1-
       - run:
