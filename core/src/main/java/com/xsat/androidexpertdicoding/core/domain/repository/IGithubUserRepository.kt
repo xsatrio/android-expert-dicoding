@@ -1,7 +1,7 @@
 package com.xsat.androidexpertdicoding.core.domain.repository
 
 import com.xsat.androidexpertdicoding.core.data.Resource
-import com.xsat.androidexpertdicoding.core.data.source.remote.response.UserResponse
+import com.xsat.androidexpertdicoding.core.domain.model.GithubUserDetail
 import com.xsat.androidexpertdicoding.core.domain.model.GithubUsers
 import kotlinx.coroutines.flow.Flow
 
@@ -12,6 +12,7 @@ interface IGithubUserRepository {
 
     suspend fun setFavoriteUser(user: GithubUsers, state: Boolean)
 
-    fun getDetailUser(username: String): Flow<Resource<UserResponse>>
+    fun getDetailUser(username: String): Flow<Resource<GithubUserDetail>>
+
 
 }
