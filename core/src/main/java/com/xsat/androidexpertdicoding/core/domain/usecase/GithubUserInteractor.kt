@@ -1,7 +1,7 @@
 package com.xsat.androidexpertdicoding.core.domain.usecase
 
 import com.xsat.androidexpertdicoding.core.data.Resource
-import com.xsat.androidexpertdicoding.core.data.source.remote.response.UserResponse
+import com.xsat.androidexpertdicoding.core.domain.model.GithubUserDetail
 import com.xsat.androidexpertdicoding.core.domain.model.GithubUsers
 import com.xsat.androidexpertdicoding.core.domain.repository.IGithubUserRepository
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +20,7 @@ class GithubUserInteractor(private val githubUserRepository: IGithubUserReposito
         githubUserRepository.setFavoriteUser(user, state)
     }
 
-    override fun getDetailUser(username: String): Flow<Resource<UserResponse>> {
+    override fun getDetailUser(username: String): Flow<Resource<GithubUserDetail>> {
         return githubUserRepository.getDetailUser(username)
     }
 

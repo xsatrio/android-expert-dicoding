@@ -4,7 +4,7 @@ import com.xsat.androidexpertdicoding.core.data.source.local.LocalDataSource
 import com.xsat.androidexpertdicoding.core.data.source.remote.RemoteDataSource
 import com.xsat.androidexpertdicoding.core.data.source.remote.network.ApiResponseResult
 import com.xsat.androidexpertdicoding.core.data.source.remote.response.ItemsItem
-import com.xsat.androidexpertdicoding.core.data.source.remote.response.UserResponse
+import com.xsat.androidexpertdicoding.core.domain.model.GithubUserDetail
 import com.xsat.androidexpertdicoding.core.domain.model.GithubUsers
 import com.xsat.androidexpertdicoding.core.domain.repository.IGithubUserRepository
 import com.xsat.androidexpertdicoding.core.utils.DataMapper
@@ -58,14 +58,18 @@ class GithubUserRepository(
         }
     }
 
-    override fun getDetailUser(username: String): Flow<Resource<UserResponse>> {
+    override fun getDetailUser(username: String): Flow<Resource<GithubUserDetail>> {
         return flow {
             emit(Resource.Loading())
             when (val response = remoteDataSource.getDetailUser(username).first()) {
-                is ApiResponseResult.Success -> emit(Resource.Success(response.data))
+                is ApiResponseResult.Success -> {
+                    val mapped = DataMapper.mapUserResponseToDomain(response.data)
+                    emit(Resource.Success(mapped))
+                }
                 is ApiResponseResult.Error -> emit(Resource.Error(response.errorMessage))
                 ApiResponseResult.Empty -> emit(Resource.Error("No data found"))
             }
         }
     }
+
 }
