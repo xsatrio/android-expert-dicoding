@@ -15,6 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
+        buildConfigField("String", "BASE_URL_CERTIFICATE", "\"${project.properties["BASE_URL_CERTIFICATE"]}\"")
         buildConfigField("String", "BASE_URL", "\"${project.properties["BASE_URL"]}\"")
         buildConfigField("String", "API_KEY", "\"${project.properties["API_KEY"]}\"")
     }
