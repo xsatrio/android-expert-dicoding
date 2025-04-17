@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.xsat.androidexpertdicoding.R
 import com.xsat.androidexpertdicoding.core.data.Resource
 import com.xsat.androidexpertdicoding.core.domain.model.GithubUsers
 import com.xsat.androidexpertdicoding.databinding.ActivityDetailBinding
@@ -34,6 +35,7 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
+        @Suppress("DEPRECATION")
         githubUser = intent.getParcelableExtra("user_data")
 
         githubUser?.let {
@@ -52,9 +54,9 @@ class DetailActivity : AppCompatActivity() {
                         val user = result.data
                         binding.tvName.text = user?.name ?: "No Name"
                         binding.tvUsername.text = user?.login
-                        binding.tvId.text = "ID: ${user?.id}"
-                        binding.tvFollowersCount.text = "Followers: ${user?.followers}"
-                        binding.tvFollowingCount.text = "Following: ${user?.following}"
+                        binding.tvId.text = getString(R.string.id_format, user?.id ?: 0)
+                        binding.tvFollowersCount.text = getString(R.string.followers_format, user?.followers ?: 0)
+                        binding.tvFollowingCount.text = getString(R.string.following_format, user?.following ?: 0)
                         Glide.with(this)
                             .load(user?.avatarUrl)
                             .into(binding.ivUserAvatar)
@@ -96,8 +98,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun updateFavoriteState(isFavorite: Boolean) {
         binding.fabFavorite.setImageResource(
-            if (isFavorite) com.xsat.androidexpertdicoding.R.drawable.baseline_favorite_24
-            else com.xsat.androidexpertdicoding.R.drawable.baseline_favorite_border_24
+            if (isFavorite) R.drawable.baseline_favorite_24
+            else R.drawable.baseline_favorite_border_24
         )
     }
 }

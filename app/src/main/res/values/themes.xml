@@ -1,8 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.AndroidExpertDicoding" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/bgapp</item>
     </style>
 
-    <style name="Theme.AndroidExpertDicoding" parent="Base.Theme.AndroidExpertDicoding" />
 </resources>
